@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using BasicAuthentication.Models;
+using StackOverflow.Models;
 
-namespace BasicAuthentication
+namespace StackOverflow
 {
     public class Startup
     {
