@@ -26,13 +26,20 @@ namespace StackOverflow.Controllers
             _db = db;
         }
 
-
         private ApplicationDbContext db = new ApplicationDbContext();
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
-            return View(_db.Questions.Where(x => x.User.Id == currentUser.Id));
+            //var currentUser = await _userManager.FindByIdAsync(User.GetUserId());
+            return View(_db.Questions.ToList());
         }
+
+        public IActionResult Details(int id)
+        {
+            var questionList = _db.Questions.Where(x => x.QuestionId == id).Include(question => question.Answers).ToList();
+            //var questionList = _db.Questions.ToList();
+            return View(questionList);
+        }
+
         public IActionResult Create()
         {
             return View();

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<StackOverflow.Models.Question>
+
+<html>
+<head>
+    <title>Question Details</title>
+</head>
+<body>
+    <h2>Details</h2>
+    <hr />
+
+    @foreach (var question in Model)
+    {
+        <h2>@Html.DisplayFor(x => question.UserName)</h2>
+        <h3>@Html.DisplayFor(x => question.Description)</h3>
+
+        @Html.ActionLink("New Answer", "Create", "Answers", new { id = question.QuestionId })
+
+        @foreach (var answer in question.Answers)
+        {
+            <li>UserName: @Html.DisplayFor(x => answer.UserName)</li>
+            <li>Comment: @Html.DisplayFor(x => answer.Description)</li>
+            <hr />
+        }
+    }
+    <p>@Html.ActionLink("Back to list", "Index")</p>
+
+</body>
+</html>

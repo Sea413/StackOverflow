@@ -7,9 +7,7 @@
 
 @model IEnumerable<StackOverflow.Models.Question>
 
-<p>hello!!!!!</p>
-
-<h2>Here is your list of Questions, @User.GetUserName()</h2>
+<h2>The list of Questions:</h2>
 <hr />
 
 @if (Model.Any())
@@ -19,8 +17,15 @@
     <ul>
         @foreach (var listItem in Model)
         {
-            <li>@Html.DisplayFor(modelItem => listItem.UserName)</li>
-            <li>@Html.DisplayFor(modelItem => listItem.Description)</li>
+            <li>@Html.DisplayFor(modelItem => listItem.UserName) | @Html.ActionLink("Details", "Details", new { id = listItem.QuestionId }) | @Html.ActionLink("Edit", "Edit", new { id = listItem.QuestionId })</li>
+
+            <li>
+                Delete @using (Html.BeginForm("Delete", "Questions", new { id = listItem.QuestionId }))
+                    {
+                    <input type="submit" value="Delete" />
+                }
+            </li>
+            <hr />
         }
     </ul>
 }
@@ -29,4 +34,4 @@ else
     <p>No Questions have been added yet!</p>
 }
 
-@Html.ActionLink("Create new", "Create")
+| @Html.ActionLink("Create new", "Create") | @Html.ActionLink("Ready to log out?", "index", "Account") |

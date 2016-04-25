@@ -12,6 +12,8 @@
     <p>Hello @User.GetUserName()!</p>
     @using (Html.BeginForm("LogOff", "Account"))
     {
+        <hr />
+        @Html.ActionLink("Go to the questions list", "Index", "Questions")
         <input type="submit" class="btn btn-default" value="Log out" />
     }
 }
